@@ -1,0 +1,45 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+bool hasTriple(const string &num, char digit) {
+    for (int i = 0; i < num.size() - 2; ++i) {
+        if (num[i] == digit && num[i + 1] == digit && num[i + 2] == digit) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool hasDouble(const string &num, char digit) {
+    for (int i = 0; i < num.size() - 1; ++i) {
+        if (num[i] == digit && num[i + 1] == digit) {
+            return true;
+        }
+    }
+    return false;
+}
+
+int TripleDouble(long num1, long num2) {
+
+    string str1 = to_string(num1);
+    string str2 = to_string(num2);
+    
+    for (char digit = '0'; digit <= '9'; ++digit) {
+        if (hasTriple(str1, digit) && hasDouble(str2, digit)) {
+            return 1;
+        }
+    }
+
+    return 0;  // No such digit found
+}
+
+int main() {
+    long num1 = 451999277;
+    long num2 = 41177722899;
+
+    int result = TripleDouble(num1, num2);
+    cout << "Result: " << result << endl;  // Output will be 1
+
+    return 0;
+}
